@@ -5,7 +5,8 @@ from tkinter import messagebox
 from utils.system_tools import (
     verificar_chkdsk, 
     reparar_sfc, 
-    limpar_arquivos_temporarios
+    limpar_arquivos_temporarios,
+    verificar_erros_de_memoria  # Nova função importada
 )
 
 # --- CONFIGURAÇÃO DA JANELA PRINCIPAL ---
@@ -35,6 +36,11 @@ def criar_interface():
     botao_limpar = tk.Button(janela, text="3. Limpar Arquivos Temporários", command=limpar_arquivos_temporarios,
                               bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_limpar.pack(pady=5)
+
+    # Botão 4: Verificar Erros de Memória
+    botao_memoria = tk.Button(janela, text="4. Verificar Erros de Memória (Diagnóstico)", command=verificar_erros_de_memoria,
+                               bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
+    botao_memoria.pack(pady=5)
 
     # ... os outros botões virão aqui ...
 

@@ -13,8 +13,6 @@ def verificar_chkdsk():
                             "O comando CHKDSK será agendado para o próximo reinício do sistema.\n"
                             "Ele pode levar algum tempo. Clique em OK para continuar.")
 
-        # O comando CHKDSK exige permissões de administrador.
-        # Estamos executando o comando para o disco C: com as flags /f (reparar) e /r (recuperar).
         subprocess.run(['chkdsk', 'C:', '/f', '/r'], shell=True, check=True)
         
         messagebox.showinfo("Verificação de Disco", 
@@ -37,7 +35,6 @@ def reparar_sfc():
                             "Executando reparo de arquivos de sistema. Isso pode levar algum tempo. "
                             "Por favor, aguarde. Uma janela de console pode aparecer.")
         
-        # O comando sfc /scannow precisa de permissões de administrador.
         subprocess.run(['sfc', '/scannow'], shell=True, check=True)
         
         messagebox.showinfo("Reparo SFC", "Reparo de arquivos de sistema concluído!")
@@ -55,8 +52,6 @@ def limpar_arquivos_temporarios():
     try:
         messagebox.showinfo("Limpeza de Arquivos", "Iniciando a limpeza de arquivos temporários. Clique em OK para continuar.")
         
-        # Comando do seu script .bat: `cleanmgr /sagerun:1`. Este comando abre uma
-        # interface de limpeza do disco com configurações pré-definidas.
         subprocess.run(['cleanmgr', '/sagerun:1'], shell=True, check=True)
         
         messagebox.showinfo("Limpeza de Arquivos", "Limpeza de arquivos temporários concluída!")
@@ -64,3 +59,17 @@ def limpar_arquivos_temporarios():
         messagebox.showerror("Erro", f"Ocorreu um erro ao executar a limpeza: {e.returncode}")
     except Exception as e:
         messagebox.showerror("Erro", f"Ocorreu um erro inesperado: {e}")
+
+def verificar_erros_de_memoria():
+    """
+    Função para iniciar o Diagnóstico de Memória do Windows.
+    """
+    try:
+        messagebox.showinfo("Diagnóstico de Memória", "Abrindo a ferramenta de Diagnóstico de Memória do Windows.\n"
+                                                      "Siga as instruções na tela para verificar a memória.")
+        
+        # O comando mdsched.exe abre a ferramenta para o usuário interagir.
+        subprocess.run(['mdsched.exe'], shell=True, check=False) # 'check=False' para não gerar erro se o usuário cancelar.
+        
+    except Exception as e:
+        messagebox.showerror("Erro", f"Ocorreu um erro ao abrir o Diagnóstico de Memória: {e}")
