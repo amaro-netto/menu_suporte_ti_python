@@ -11,12 +11,13 @@ from utils.system_tools import (
     gerenciar_processos,
     backup_de_drivers,
     verificar_atualizacoes,
-    informacoes_do_sistema  # Nova função importada
+    informacoes_do_sistema
 )
 
 # Importa as funções de ferramentas de rede
 from utils.network_tools import (
-    verificar_conectividade_de_rede
+    verificar_conectividade_de_rede,
+    limpar_cache_dns  # Nova função importada
 )
 
 # --- CONFIGURAÇÃO DA JANELA PRINCIPAL ---
@@ -49,8 +50,6 @@ def criar_interface():
     botao_backup.pack(pady=5)
     botao_atualizacoes = tk.Button(janela, text="9. Verificar Atualizações do Windows", command=verificar_atualizacoes, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_atualizacoes.pack(pady=5)
-    
-    # Adicionando o novo botão
     botao_sysinfo = tk.Button(janela, text="10. Informações do Sistema", command=informacoes_do_sistema, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_sysinfo.pack(pady=5)
     
@@ -58,9 +57,13 @@ def criar_interface():
     separador_rede = tk.Label(janela, text="--- Ferramentas de Rede ---", font=("Helvetica", 10), fg="#00BFFF", bg="#2E2E2E")
     separador_rede.pack(pady=(15, 5))
 
-    # Botão de Rede (já implementado)
+    # Botões de Rede
     botao_network = tk.Button(janela, text="6. Verificar Conectividade de Rede (Ping/Teste)", command=verificar_conectividade_de_rede, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_network.pack(pady=5)
+
+    # Adicionando o novo botão de Limpar Cache DNS
+    botao_dns = tk.Button(janela, text="11. Limpar Cache DNS", command=limpar_cache_dns, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
+    botao_dns.pack(pady=5)
 
     # ... os outros botões virão aqui ...
 
