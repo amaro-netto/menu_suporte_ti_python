@@ -171,8 +171,28 @@ def gerenciar_usuarios_locais():
                             "Abrindo o Gerenciamento de Usuários e Grupos Locais.\n"
                             "Use a ferramenta para criar, editar ou excluir usuários.")
         
-        # O comando lusrmgr.msc abre a ferramenta de gerenciamento de usuários.
         subprocess.run(['lusrmgr.msc'], shell=True, check=False)
         
     except Exception as e:
         messagebox.showerror("Erro", f"Ocorreu um erro ao abrir o Gerenciamento de Usuários: {e}")
+
+def verificar_integridade_dism():
+    """
+    Função para verificar e reparar a integridade da imagem do Windows com DISM.
+    """
+    try:
+        messagebox.showinfo("Verificação DISM", 
+                            "Abrindo uma janela de console para verificar a integridade da imagem do Windows.\n"
+                            "Este processo pode levar um tempo considerável e requer privilégios de administrador. Clique em OK para continuar.")
+        
+        # O comando DISM exige permissões de administrador.
+        # Usamos `start cmd /k` para exibir o progresso.
+        comando = 'start cmd /k "echo Verificando integridade da imagem do Windows... && ' \
+                  'dism /online /cleanup-image /restorehealth && ' \
+                  'echo Verificacao e reparo concluidos! && ' \
+                  'pause"'
+        
+        subprocess.run(comando, shell=True)
+        
+    except Exception as e:
+        messagebox.showerror("Erro", f"Ocorreu um erro ao executar a verificação DISM: {e}")

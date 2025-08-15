@@ -13,7 +13,8 @@ from utils.system_tools import (
     verificar_atualizacoes,
     informacoes_do_sistema,
     desfragmentar_disco,
-    gerenciar_usuarios_locais  # Nova função importada
+    gerenciar_usuarios_locais,
+    verificar_integridade_dism  # Nova função importada
 )
 
 # Importa as funções de ferramentas de rede
@@ -57,10 +58,12 @@ def criar_interface():
     botao_sysinfo.pack(pady=5)
     botao_defrag = tk.Button(janela, text="13. Desfragmentar Disco", command=desfragmentar_disco, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_defrag.pack(pady=5)
-    
-    # Adicionando o novo botão
     botao_usuarios = tk.Button(janela, text="14. Gerenciar Usuarios Locais", command=gerenciar_usuarios_locais, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_usuarios.pack(pady=5)
+    
+    # Adicionando o novo botão
+    botao_dism = tk.Button(janela, text="15. Verificar Integridade de Arquivos (DISM)", command=verificar_integridade_dism, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
+    botao_dism.pack(pady=5)
     
     # Separador visual para organizar os botões por categoria
     separador_rede = tk.Label(janela, text="--- Ferramentas de Rede ---", font=("Helvetica", 10), fg="#00BFFF", bg="#2E2E2E")
