@@ -104,14 +104,10 @@ def backup_de_drivers():
     Função para realizar backup dos drivers do sistema.
     """
     try:
-        # Abertura de uma nova janela de console para exibir o progresso do backup.
         messagebox.showinfo("Backup de Drivers", 
                             "Abrindo uma janela de console para exibir o progresso do backup de drivers.\n"
                             "Este processo pode levar algum tempo. Clique em OK para continuar.")
         
-        # O comando `start cmd /k ...` abre um novo prompt de comando (`cmd`)
-        # e o mantém aberto (`/k`) após a execução dos comandos.
-        # Os comandos são concatenados com `&&` para garantir a execução sequencial.
         comando = 'start cmd /k "echo Realizando backup de drivers... && ' \
                   'mkdir C:\\DriverBackup && ' \
                   'dism /online /export-driver /destination:C:\\DriverBackup && ' \
@@ -123,3 +119,17 @@ def backup_de_drivers():
         
     except Exception as e:
         messagebox.showerror("Erro", f"Ocorreu um erro ao executar o backup de drivers: {e}")
+
+def verificar_atualizacoes():
+    """
+    Função para abrir a ferramenta de Atualização do Windows.
+    """
+    try:
+        messagebox.showinfo("Atualizações do Windows", "Abrindo as configurações de Atualização do Windows.\n"
+                                                      "Verifique o status das atualizações e procure por novas.")
+        
+        # O comando ms-settings:windowsupdate abre a janela de configurações do Windows Update.
+        subprocess.run(['start', 'ms-settings:windowsupdate'], shell=True, check=False)
+        
+    except Exception as e:
+        messagebox.showerror("Erro", f"Ocorreu um erro ao abrir o Windows Update: {e}")
