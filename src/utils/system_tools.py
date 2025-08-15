@@ -68,8 +68,34 @@ def verificar_erros_de_memoria():
         messagebox.showinfo("Diagnóstico de Memória", "Abrindo a ferramenta de Diagnóstico de Memória do Windows.\n"
                                                       "Siga as instruções na tela para verificar a memória.")
         
-        # O comando mdsched.exe abre a ferramenta para o usuário interagir.
-        subprocess.run(['mdsched.exe'], shell=True, check=False) # 'check=False' para não gerar erro se o usuário cancelar.
+        subprocess.run(['mdsched.exe'], shell=True, check=False)
         
     except Exception as e:
         messagebox.showerror("Erro", f"Ocorreu um erro ao abrir o Diagnóstico de Memória: {e}")
+
+def restaurar_sistema():
+    """
+    Função para abrir a ferramenta de Restauração do Sistema.
+    """
+    try:
+        messagebox.showinfo("Restauração do Sistema", "Abrindo a ferramenta de Restauração do Sistema.\n"
+                                                      "Siga as instruções na tela para escolher um ponto de restauração.")
+        
+        subprocess.run(['rstrui.exe'], shell=True, check=False)
+        
+    except Exception as e:
+        messagebox.showerror("Erro", f"Ocorreu um erro ao abrir a Restauração do Sistema: {e}")
+
+def gerenciar_processos():
+    """
+    Função para abrir o Gerenciador de Tarefas do Windows.
+    """
+    try:
+        messagebox.showinfo("Gerenciador de Tarefas", "Abrindo o Gerenciador de Tarefas do Windows.\n"
+                                                      "Use a ferramenta para monitorar e encerrar processos.")
+        
+        # O comando taskmgr.exe abre o Gerenciador de Tarefas.
+        subprocess.run(['taskmgr.exe'], shell=True, check=False)
+        
+    except Exception as e:
+        messagebox.showerror("Erro", f"Ocorreu um erro ao abrir o Gerenciador de Tarefas: {e}")
