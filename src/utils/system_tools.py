@@ -185,8 +185,6 @@ def verificar_integridade_dism():
                             "Abrindo uma janela de console para verificar a integridade da imagem do Windows.\n"
                             "Este processo pode levar um tempo considerável e requer privilégios de administrador. Clique em OK para continuar.")
         
-        # O comando DISM exige permissões de administrador.
-        # Usamos `start cmd /k` para exibir o progresso.
         comando = 'start cmd /k "echo Verificando integridade da imagem do Windows... && ' \
                   'dism /online /cleanup-image /restorehealth && ' \
                   'echo Verificacao e reparo concluidos! && ' \
@@ -196,3 +194,18 @@ def verificar_integridade_dism():
         
     except Exception as e:
         messagebox.showerror("Erro", f"Ocorreu um erro ao executar a verificação DISM: {e}")
+
+def gerenciar_firewall():
+    """
+    Função para abrir as configurações do Firewall do Windows.
+    """
+    try:
+        messagebox.showinfo("Gerenciador de Firewall", 
+                            "Abrindo as configurações do Firewall do Windows.\n"
+                            "Use a ferramenta para ativar, desativar ou configurar o firewall.")
+        
+        # O comando `firewall.cpl` abre a janela de configurações do firewall.
+        subprocess.run(['firewall.cpl'], shell=True, check=False)
+        
+    except Exception as e:
+        messagebox.showerror("Erro", f"Ocorreu um erro ao abrir o Gerenciador de Firewall: {e}")
