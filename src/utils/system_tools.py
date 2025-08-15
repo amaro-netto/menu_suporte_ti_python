@@ -248,15 +248,28 @@ def criar_ponto_de_restauracao():
                             "Abrindo uma janela de console para criar um ponto de restauração.\n"
                             "Este processo pode levar alguns segundos. Clique em OK para continuar.")
         
-        # O comando WMIC exige permissões de administrador.
-        # Usamos `start cmd /k` para exibir o progresso.
         comando = 'start cmd /k "echo Criando ponto de restauracao... && ' \
                   'wmic.exe /Namespace:\\\\root\\default Path SystemRestore Call CreateRestorePoint "Ponto de Restauracao - CodeBuddy", 100, 7 && ' \
                   'echo Ponto de restauracao criado com sucesso! && ' \
                   'pause"'
         
-        # Note que as barras invertidas duplas `\\` são usadas para escapar a barra invertida em Python.
         subprocess.run(comando, shell=True)
         
     except Exception as e:
         messagebox.showerror("Erro", f"Ocorreu um erro ao criar o ponto de restauração: {e}")
+
+def executar_comando_personalizado():
+    """
+    Função para abrir um prompt de comando personalizado.
+    """
+    try:
+        messagebox.showinfo("Comando Personalizado", 
+                            "Abrindo um novo prompt de comando.\n"
+                            "Você pode digitar comandos personalizados nele.")
+        
+        # O comando `start cmd.exe` abre um novo prompt de comando.
+        # A nova janela de console será independente da aplicação.
+        subprocess.Popen(['start', 'cmd.exe'], shell=True)
+        
+    except Exception as e:
+        messagebox.showerror("Erro", f"Ocorreu um erro ao abrir o prompt de comando: {e}")

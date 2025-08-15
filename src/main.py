@@ -18,7 +18,8 @@ from utils.system_tools import (
     gerenciar_firewall,
     verificar_logs_de_eventos,
     testar_velocidade_de_disco,
-    criar_ponto_de_restauracao  # Nova função importada
+    criar_ponto_de_restauracao,
+    executar_comando_personalizado  # Nova função importada
 )
 
 # Importa as funções de ferramentas de rede
@@ -72,10 +73,12 @@ def criar_interface():
     botao_logs.pack(pady=5)
     botao_disktest = tk.Button(janela, text="18. Testar Velocidade de Disco", command=testar_velocidade_de_disco, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_disktest.pack(pady=5)
-    
-    # Adicionando o novo botão
     botao_restorepoint = tk.Button(janela, text="19. Criar Ponto de Restauracao", command=criar_ponto_de_restauracao, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_restorepoint.pack(pady=5)
+    
+    # Adicionando o novo botão
+    botao_customcmd = tk.Button(janela, text="20. Executar Comando Personalizado (CMD)", command=executar_comando_personalizado, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
+    botao_customcmd.pack(pady=5)
     
     # Separador visual para organizar os botões por categoria
     separador_rede = tk.Label(janela, text="--- Ferramentas de Rede ---", font=("Helvetica", 10), fg="#00BFFF", bg="#2E2E2E")
