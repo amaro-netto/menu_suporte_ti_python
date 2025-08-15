@@ -11,14 +11,15 @@ from utils.system_tools import (
     gerenciar_processos,
     backup_de_drivers,
     verificar_atualizacoes,
-    informacoes_do_sistema
+    informacoes_do_sistema,
+    desfragmentar_disco  # Nova função importada
 )
 
 # Importa as funções de ferramentas de rede
 from utils.network_tools import (
     verificar_conectividade_de_rede,
     limpar_cache_dns,
-    reiniciar_servicos_de_rede  # Nova função importada
+    reiniciar_servicos_de_rede
 )
 
 # --- CONFIGURAÇÃO DA JANELA PRINCIPAL ---
@@ -53,18 +54,20 @@ def criar_interface():
     botao_atualizacoes.pack(pady=5)
     botao_sysinfo = tk.Button(janela, text="10. Informações do Sistema", command=informacoes_do_sistema, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_sysinfo.pack(pady=5)
+
+    # Adicionando o novo botão
+    botao_defrag = tk.Button(janela, text="13. Desfragmentar Disco", command=desfragmentar_disco, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
+    botao_defrag.pack(pady=5)
     
     # Separador visual para organizar os botões por categoria
     separador_rede = tk.Label(janela, text="--- Ferramentas de Rede ---", font=("Helvetica", 10), fg="#00BFFF", bg="#2E2E2E")
     separador_rede.pack(pady=(15, 5))
 
-    # Botões de Rede
+    # Botões de Rede (já implementados)
     botao_network = tk.Button(janela, text="6. Verificar Conectividade de Rede (Ping/Teste)", command=verificar_conectividade_de_rede, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_network.pack(pady=5)
     botao_dns = tk.Button(janela, text="11. Limpar Cache DNS", command=limpar_cache_dns, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_dns.pack(pady=5)
-    
-    # Adicionando o novo botão de Reiniciar Serviços de Rede
     botao_reiniciar_rede = tk.Button(janela, text="12. Reiniciar Serviços de Rede", command=reiniciar_servicos_de_rede, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_reiniciar_rede.pack(pady=5)
 

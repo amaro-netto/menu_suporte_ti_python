@@ -141,9 +141,25 @@ def informacoes_do_sistema():
         messagebox.showinfo("Informações do Sistema", "Abrindo uma janela de console para exibir as informações detalhadas do sistema.\n"
                                                       "Clique em OK para continuar.")
         
-        # O comando `start cmd /k "systeminfo"` abre um novo prompt de comando (`cmd`)
-        # e o mantém aberto (`/k`) após a execução dos comandos para que o usuário possa ver a saída.
         subprocess.run('start cmd /k "systeminfo & pause"', shell=True, check=False)
         
     except Exception as e:
         messagebox.showerror("Erro", f"Ocorreu um erro ao obter as informações do sistema: {e}")
+
+def desfragmentar_disco():
+    """
+    Função para desfragmentar o disco C.
+    """
+    try:
+        messagebox.showinfo("Desfragmentação de Disco", 
+                            "Abrindo uma janela de console para exibir o progresso da desfragmentação do disco C.\n"
+                            "Este processo pode levar algum tempo. Clique em OK para continuar.")
+        
+        # O comando `start cmd /k ...` é usado para mostrar o progresso no console.
+        # Adicionamos `&& pause` para manter a janela aberta ao final.
+        comando = 'start cmd /k "echo Executando desfragmentacao de disco... && defrag C: /O && echo Desfragmentacao concluida! && pause" '
+                  
+        subprocess.run(comando, shell=True)
+        
+    except Exception as e:
+        messagebox.showerror("Erro", f"Ocorreu um erro ao desfragmentar o disco: {e}")
