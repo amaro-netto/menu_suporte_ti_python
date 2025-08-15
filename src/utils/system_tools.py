@@ -218,8 +218,24 @@ def verificar_logs_de_eventos():
                             "Abrindo o Visualizador de Eventos do Windows.\n"
                             "Use a ferramenta para verificar logs de erros e eventos do sistema.")
         
-        # O comando `eventvwr.msc` abre o Visualizador de Eventos.
         subprocess.run(['eventvwr.msc'], shell=True, check=False)
         
     except Exception as e:
         messagebox.showerror("Erro", f"Ocorreu um erro ao abrir o Visualizador de Eventos: {e}")
+
+def testar_velocidade_de_disco():
+    """
+    Função para testar a velocidade do disco C.
+    """
+    try:
+        messagebox.showinfo("Teste de Velocidade de Disco", 
+                            "Abrindo uma janela de console para exibir os resultados do teste de velocidade do disco C.\n"
+                            "Este processo pode levar alguns minutos. Clique em OK para continuar.")
+        
+        # O comando `start cmd /k` é usado para mostrar o progresso no console.
+        comando = 'start cmd /k "echo Testando velocidade de disco... && winsat disk -drive C && echo Teste de velocidade concluido! && pause" '
+                  
+        subprocess.run(comando, shell=True)
+        
+    except Exception as e:
+        messagebox.showerror("Erro", f"Ocorreu um erro ao testar a velocidade do disco: {e}")

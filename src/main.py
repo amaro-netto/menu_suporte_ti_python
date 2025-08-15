@@ -1,5 +1,3 @@
-# Arquivo: src/main.py
-
 import tkinter as tk
 from tkinter import messagebox
 
@@ -18,7 +16,8 @@ from utils.system_tools import (
     gerenciar_usuarios_locais,
     verificar_integridade_dism,
     gerenciar_firewall,
-    verificar_logs_de_eventos  # Nova função importada
+    verificar_logs_de_eventos,
+    testar_velocidade_de_disco  # Nova função importada
 )
 
 # Importa as funções de ferramentas de rede
@@ -68,10 +67,12 @@ def criar_interface():
     botao_dism.pack(pady=5)
     botao_firewall = tk.Button(janela, text="16. Ativar/Desativar Firewall do Windows", command=gerenciar_firewall, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_firewall.pack(pady=5)
-    
-    # Adicionando o novo botão
     botao_logs = tk.Button(janela, text="17. Verificar Logs de Eventos", command=verificar_logs_de_eventos, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_logs.pack(pady=5)
+
+    # Adicionando o novo botão
+    botao_disktest = tk.Button(janela, text="18. Testar Velocidade de Disco", command=testar_velocidade_de_disco, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
+    botao_disktest.pack(pady=5)
     
     # Separador visual para organizar os botões por categoria
     separador_rede = tk.Label(janela, text="--- Ferramentas de Rede ---", font=("Helvetica", 10), fg="#00BFFF", bg="#2E2E2E")
