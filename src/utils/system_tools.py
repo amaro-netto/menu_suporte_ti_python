@@ -204,8 +204,22 @@ def gerenciar_firewall():
                             "Abrindo as configurações do Firewall do Windows.\n"
                             "Use a ferramenta para ativar, desativar ou configurar o firewall.")
         
-        # O comando `firewall.cpl` abre a janela de configurações do firewall.
         subprocess.run(['firewall.cpl'], shell=True, check=False)
         
     except Exception as e:
         messagebox.showerror("Erro", f"Ocorreu um erro ao abrir o Gerenciador de Firewall: {e}")
+
+def verificar_logs_de_eventos():
+    """
+    Função para abrir o Visualizador de Eventos.
+    """
+    try:
+        messagebox.showinfo("Visualizador de Eventos", 
+                            "Abrindo o Visualizador de Eventos do Windows.\n"
+                            "Use a ferramenta para verificar logs de erros e eventos do sistema.")
+        
+        # O comando `eventvwr.msc` abre o Visualizador de Eventos.
+        subprocess.run(['eventvwr.msc'], shell=True, check=False)
+        
+    except Exception as e:
+        messagebox.showerror("Erro", f"Ocorreu um erro ao abrir o Visualizador de Eventos: {e}")
