@@ -17,7 +17,8 @@ from utils.system_tools import (
 # Importa as funções de ferramentas de rede
 from utils.network_tools import (
     verificar_conectividade_de_rede,
-    limpar_cache_dns  # Nova função importada
+    limpar_cache_dns,
+    reiniciar_servicos_de_rede  # Nova função importada
 )
 
 # --- CONFIGURAÇÃO DA JANELA PRINCIPAL ---
@@ -60,10 +61,12 @@ def criar_interface():
     # Botões de Rede
     botao_network = tk.Button(janela, text="6. Verificar Conectividade de Rede (Ping/Teste)", command=verificar_conectividade_de_rede, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_network.pack(pady=5)
-
-    # Adicionando o novo botão de Limpar Cache DNS
     botao_dns = tk.Button(janela, text="11. Limpar Cache DNS", command=limpar_cache_dns, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_dns.pack(pady=5)
+    
+    # Adicionando o novo botão de Reiniciar Serviços de Rede
+    botao_reiniciar_rede = tk.Button(janela, text="12. Reiniciar Serviços de Rede", command=reiniciar_servicos_de_rede, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
+    botao_reiniciar_rede.pack(pady=5)
 
     # ... os outros botões virão aqui ...
 

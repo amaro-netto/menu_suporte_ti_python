@@ -32,7 +32,6 @@ def limpar_cache_dns():
         messagebox.showinfo("Limpeza de Cache DNS", "Iniciando a limpeza do cache DNS. Clique em OK para continuar.")
         
         # O comando ipconfig /flushdns exige permissões de administrador.
-        # Por isso, o programa precisa ser executado como administrador.
         subprocess.run(['ipconfig', '/flushdns'], shell=True, check=True)
         
         messagebox.showinfo("Limpeza de Cache DNS", "Cache DNS limpo com sucesso!")
@@ -40,6 +39,30 @@ def limpar_cache_dns():
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Erro de Permissão", 
                              f"Ocorreu um erro ao limpar o cache DNS. Código de retorno: {e.returncode}\n"
+                             "Verifique se o programa foi executado como administrador.")
+    except Exception as e:
+        messagebox.showerror("Erro", f"Ocorreu um erro inesperado: {e}")
+
+def reiniciar_servicos_de_rede():
+    """
+    Função para reiniciar os serviços de rede.
+    """
+    try:
+        messagebox.showinfo("Reiniciar Serviços de Rede", 
+                            "Reiniciando os serviços de rede. Isso pode levar alguns segundos e pode ser necessário reiniciar o computador para que as mudanças tenham efeito.\n"
+                            "Clique em OK para continuar.")
+        
+        # Os comandos netsh exigem permissões de administrador.
+        # Por isso, o programa precisa ser executado como administrador.
+        subprocess.run(['netsh', 'winsock', 'reset'], shell=True, check=True)
+        subprocess.run(['netsh', 'int', 'ip', 'reset'], shell=True, check=True)
+        
+        messagebox.showinfo("Reiniciar Serviços de Rede", 
+                            "Serviços de rede reiniciados! Para garantir que as alterações surtam efeito, reinicie o computador.")
+        
+    except subprocess.CalledProcessError as e:
+        messagebox.showerror("Erro de Permissão", 
+                             f"Ocorreu um erro ao reiniciar os serviços de rede. Código de retorno: {e.returncode}\n"
                              "Verifique se o programa foi executado como administrador.")
     except Exception as e:
         messagebox.showerror("Erro", f"Ocorreu um erro inesperado: {e}")
