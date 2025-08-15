@@ -232,10 +232,31 @@ def testar_velocidade_de_disco():
                             "Abrindo uma janela de console para exibir os resultados do teste de velocidade do disco C.\n"
                             "Este processo pode levar alguns minutos. Clique em OK para continuar.")
         
-        # O comando `start cmd /k` é usado para mostrar o progresso no console.
         comando = 'start cmd /k "echo Testando velocidade de disco... && winsat disk -drive C && echo Teste de velocidade concluido! && pause" '
                   
         subprocess.run(comando, shell=True)
         
     except Exception as e:
         messagebox.showerror("Erro", f"Ocorreu um erro ao testar a velocidade do disco: {e}")
+
+def criar_ponto_de_restauracao():
+    """
+    Função para criar um Ponto de Restauração do Sistema.
+    """
+    try:
+        messagebox.showinfo("Ponto de Restauração", 
+                            "Abrindo uma janela de console para criar um ponto de restauração.\n"
+                            "Este processo pode levar alguns segundos. Clique em OK para continuar.")
+        
+        # O comando WMIC exige permissões de administrador.
+        # Usamos `start cmd /k` para exibir o progresso.
+        comando = 'start cmd /k "echo Criando ponto de restauracao... && ' \
+                  'wmic.exe /Namespace:\\\\root\\default Path SystemRestore Call CreateRestorePoint "Ponto de Restauracao - CodeBuddy", 100, 7 && ' \
+                  'echo Ponto de restauracao criado com sucesso! && ' \
+                  'pause"'
+        
+        # Note que as barras invertidas duplas `\\` são usadas para escapar a barra invertida em Python.
+        subprocess.run(comando, shell=True)
+        
+    except Exception as e:
+        messagebox.showerror("Erro", f"Ocorreu um erro ao criar o ponto de restauração: {e}")
