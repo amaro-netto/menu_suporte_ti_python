@@ -155,11 +155,24 @@ def desfragmentar_disco():
                             "Abrindo uma janela de console para exibir o progresso da desfragmentação do disco C.\n"
                             "Este processo pode levar algum tempo. Clique em OK para continuar.")
         
-        # O comando `start cmd /k ...` é usado para mostrar o progresso no console.
-        # Adicionamos `&& pause` para manter a janela aberta ao final.
         comando = 'start cmd /k "echo Executando desfragmentacao de disco... && defrag C: /O && echo Desfragmentacao concluida! && pause" '
                   
         subprocess.run(comando, shell=True)
         
     except Exception as e:
         messagebox.showerror("Erro", f"Ocorreu um erro ao desfragmentar o disco: {e}")
+
+def gerenciar_usuarios_locais():
+    """
+    Função para abrir o Gerenciamento de Usuários Locais.
+    """
+    try:
+        messagebox.showinfo("Gerenciamento de Usuários", 
+                            "Abrindo o Gerenciamento de Usuários e Grupos Locais.\n"
+                            "Use a ferramenta para criar, editar ou excluir usuários.")
+        
+        # O comando lusrmgr.msc abre a ferramenta de gerenciamento de usuários.
+        subprocess.run(['lusrmgr.msc'], shell=True, check=False)
+        
+    except Exception as e:
+        messagebox.showerror("Erro", f"Ocorreu um erro ao abrir o Gerenciamento de Usuários: {e}")
