@@ -19,7 +19,7 @@ from utils.system_tools import (
     verificar_logs_de_eventos,
     testar_velocidade_de_disco,
     criar_ponto_de_restauracao,
-    executar_comando_personalizado  # Nova função importada
+    executar_comando_personalizado
 )
 
 # Importa as funções de ferramentas de rede
@@ -27,6 +27,11 @@ from utils.network_tools import (
     verificar_conectividade_de_rede,
     limpar_cache_dns,
     reiniciar_servicos_de_rede
+)
+
+# Importa as funções de gerenciamento de apps
+from utils.app_tools import (
+    gerenciar_aplicativos_winget  # Nova função importada
 )
 
 # --- CONFIGURAÇÃO DA JANELA PRINCIPAL ---
@@ -75,10 +80,16 @@ def criar_interface():
     botao_disktest.pack(pady=5)
     botao_restorepoint = tk.Button(janela, text="19. Criar Ponto de Restauracao", command=criar_ponto_de_restauracao, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_restorepoint.pack(pady=5)
-    
-    # Adicionando o novo botão
     botao_customcmd = tk.Button(janela, text="20. Executar Comando Personalizado (CMD)", command=executar_comando_personalizado, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_customcmd.pack(pady=5)
+    
+    # Separador visual para organizar os botões por categoria
+    separador_app = tk.Label(janela, text="--- Gerenciamento de Aplicativos ---", font=("Helvetica", 10), fg="#00BFFF", bg="#2E2E2E")
+    separador_app.pack(pady=(15, 5))
+    
+    # Botão 21: Gerenciar Aplicativos com Winget
+    botao_winget = tk.Button(janela, text="21. Gerenciar Aplicativos com Winget", command=gerenciar_aplicativos_winget, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
+    botao_winget.pack(pady=5)
     
     # Separador visual para organizar os botões por categoria
     separador_rede = tk.Label(janela, text="--- Ferramentas de Rede ---", font=("Helvetica", 10), fg="#00BFFF", bg="#2E2E2E")
@@ -92,8 +103,12 @@ def criar_interface():
     botao_reiniciar_rede = tk.Button(janela, text="12. Reiniciar Serviços de Rede", command=reiniciar_servicos_de_rede, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_reiniciar_rede.pack(pady=5)
 
-    # ... os outros botões virão aqui ...
-
+    # Botão Sair - sempre por último
+    separador_sair = tk.Label(janela, text="--------------------------------------------------------------------------------", font=("Helvetica", 8), fg="#00FF00", bg="#2E2E2E")
+    separador_sair.pack(pady=(20, 5))
+    botao_sair = tk.Button(janela, text="22. Sair", command=janela.quit, bg="#3A3A3A", fg="#FF0000", font=("Helvetica", 12), width=40)
+    botao_sair.pack(pady=5)
+    
     janela.mainloop()
 
 # Inicia a aplicação
