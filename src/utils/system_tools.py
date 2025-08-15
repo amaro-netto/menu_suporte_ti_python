@@ -128,8 +128,22 @@ def verificar_atualizacoes():
         messagebox.showinfo("Atualizações do Windows", "Abrindo as configurações de Atualização do Windows.\n"
                                                       "Verifique o status das atualizações e procure por novas.")
         
-        # O comando ms-settings:windowsupdate abre a janela de configurações do Windows Update.
         subprocess.run(['start', 'ms-settings:windowsupdate'], shell=True, check=False)
         
     except Exception as e:
         messagebox.showerror("Erro", f"Ocorreu um erro ao abrir o Windows Update: {e}")
+
+def informacoes_do_sistema():
+    """
+    Função para exibir informações detalhadas do sistema.
+    """
+    try:
+        messagebox.showinfo("Informações do Sistema", "Abrindo uma janela de console para exibir as informações detalhadas do sistema.\n"
+                                                      "Clique em OK para continuar.")
+        
+        # O comando `start cmd /k "systeminfo"` abre um novo prompt de comando (`cmd`)
+        # e o mantém aberto (`/k`) após a execução dos comandos para que o usuário possa ver a saída.
+        subprocess.run('start cmd /k "systeminfo & pause"', shell=True, check=False)
+        
+    except Exception as e:
+        messagebox.showerror("Erro", f"Ocorreu um erro ao obter as informações do sistema: {e}")
