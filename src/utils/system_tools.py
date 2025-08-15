@@ -94,8 +94,32 @@ def gerenciar_processos():
         messagebox.showinfo("Gerenciador de Tarefas", "Abrindo o Gerenciador de Tarefas do Windows.\n"
                                                       "Use a ferramenta para monitorar e encerrar processos.")
         
-        # O comando taskmgr.exe abre o Gerenciador de Tarefas.
         subprocess.run(['taskmgr.exe'], shell=True, check=False)
         
     except Exception as e:
         messagebox.showerror("Erro", f"Ocorreu um erro ao abrir o Gerenciador de Tarefas: {e}")
+
+def backup_de_drivers():
+    """
+    Função para realizar backup dos drivers do sistema.
+    """
+    try:
+        # Abertura de uma nova janela de console para exibir o progresso do backup.
+        messagebox.showinfo("Backup de Drivers", 
+                            "Abrindo uma janela de console para exibir o progresso do backup de drivers.\n"
+                            "Este processo pode levar algum tempo. Clique em OK para continuar.")
+        
+        # O comando `start cmd /k ...` abre um novo prompt de comando (`cmd`)
+        # e o mantém aberto (`/k`) após a execução dos comandos.
+        # Os comandos são concatenados com `&&` para garantir a execução sequencial.
+        comando = 'start cmd /k "echo Realizando backup de drivers... && ' \
+                  'mkdir C:\\DriverBackup && ' \
+                  'dism /online /export-driver /destination:C:\\DriverBackup && ' \
+                  'echo. && ' \
+                  'echo Backup de drivers concluido! Salvo em C:\\DriverBackup && ' \
+                  'pause" '
+                  
+        subprocess.run(comando, shell=True)
+        
+    except Exception as e:
+        messagebox.showerror("Erro", f"Ocorreu um erro ao executar o backup de drivers: {e}")

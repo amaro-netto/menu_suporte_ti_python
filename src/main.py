@@ -8,7 +8,8 @@ from utils.system_tools import (
     limpar_arquivos_temporarios,
     verificar_erros_de_memoria,
     restaurar_sistema,
-    gerenciar_processos  # Nova função importada
+    gerenciar_processos,
+    backup_de_drivers # Nova função importada
 )
 
 # Importa as funções de ferramentas de rede
@@ -42,6 +43,10 @@ def criar_interface():
     botao_restaurar.pack(pady=5)
     botao_processos = tk.Button(janela, text="7. Gerenciar Processos (Task Manager)", command=gerenciar_processos, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
     botao_processos.pack(pady=5)
+    
+    # Adicionando o novo botão
+    botao_backup = tk.Button(janela, text="8. Backup de Drivers", command=backup_de_drivers, bg="#3A3A3A", fg="#00FF00", font=("Helvetica", 12), width=40)
+    botao_backup.pack(pady=5)
     
     # Separador visual para organizar os botões por categoria
     separador_rede = tk.Label(janela, text="--- Ferramentas de Rede ---", font=("Helvetica", 10), fg="#00BFFF", bg="#2E2E2E")
